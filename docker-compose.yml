@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  express-app:
+    image: saars1/express-app:latest
+    container_name: express-app
+    ports:
+      - "3000:8080"
+    restart: always
+  
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      - WATCHTOVER_POLL_INTERVAL=60
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower
+    restart: always
