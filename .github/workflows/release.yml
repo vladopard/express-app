@@ -25,3 +25,11 @@ jobs:
           context: .
           push: true
           tags: saars1/express-app:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Trigger render Deploy hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
